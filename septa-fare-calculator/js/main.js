@@ -19,43 +19,58 @@ $(document).ready(function() {
    })
 
 	function value() {
+		var here;
 		var answer=1;
-		answer = zoneFunction(answer);
-		answer = dayFunction(answer);
+		var zone = zoneFunction();
+		var time = dayFunction();
+		for (var i=1;i<=5;i++){
+			if (zones[i].zone === zone){
+				here=zones[i];
+				for (var j=1;j<=5;j++) {
+					if (here.fares[j].type === time) {
+						if here.
+					}
+				}
+				if here.
+			}
+		}
 		answer = howManyFunction(answer);
 		$("#answer").text(answer);
 		console.log(answer);
 	}
 
 //Get Value for ZONE
-	function zoneFunction(answer){
+	function zoneFunction(){
 		var a = $('#zoneMenu').val();
 		if (a === "zone1") {
-			return answer * 1;
+			return 1;
 		} 
 		else if (a==="zone2") {
-			return answer * 2;
+			return 2;
 		}
 		else if (a==="zone3") {
-			return answer * 3;
+			return 3;
 		}
 		else if (a==="zone4") {
-			return answer * 4;
+			return 4;
 		}
 		else if (a==="zone5") {
-			return answer * 5;
+			return 5;
 		}
 }
 
 // Get Value for TIME OF DAY
-	function dayFunction(answer) {
+	function dayFunction() {
 		var b = $("#dayMenu").val();
 
 		if (b === "weekday") {
-			return answer + .1;
+			return "weekday";
 		}
 		else if (b === "weekend") {
-			return answer + .5;
+			return "evening_weekend";
+		}
+		else if (b === "anytime") {
+			return "anytime";
 		}
 	}
 
