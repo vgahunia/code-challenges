@@ -1,10 +1,12 @@
 
 $(document).ready(function() {
 	
+	var zones;
 	var write = $("#answer").text();
 	document.getElementById("zoneMenu").addEventListener("change", value);
 	document.getElementById("dayMenu").addEventListener("change", value);
 	document.getElementById("howManyMenu").addEventListener("change", value);
+	document.getElementById("where").addEventListener("change", value);
 
 	$.getJSON("fares.json", function(data){
 		var x = data.info;
@@ -13,27 +15,33 @@ $(document).ready(function() {
 		var evening=x.evening_weekend;
 		var advance=x.advance_purchase;
 		var onboard=x.onboard_purchase;
-		var zones = data.zones;
-		console.log(zones[1].fares[0].price);
+		zones = data.zones;
+		// console.log(zones[1].fares[0].price);
     $("#info").html(anytime + "<br>" + weekday + "<br>" + evening + "<br>" + advance + "<br>" + onboard);
    })
+
 
 	function value() {
 		var here;
 		var answer=1;
 		var zone = zoneFunction();
 		var time = dayFunction();
-		for (var i=1;i<=5;i++){
-			if (zones[i].zone === zone){
-				here=zones[i];
-				for (var j=1;j<=5;j++) {
-					if (here.fares[j].type === time) {
-						if here.
+		var where = wherePurchase();
+		console.log(zone, time, where);
+		$.getJSON("fares.json", function(data){
+			zoneArray = data.zones;
+			console.log(zoneArray[0].zone)
+			for (var i=0;i<5;i++){
+				if (zoneArray[i].zone === zone){
+					here=zones[i];
+					for (var j=0;j<5;j++) {
+						if (here.fares[j].type === time && here.fares[j].purchase === where) {
+							answer = here.fares[j].price;
+						}
 					}
 				}
-				if here.
 			}
-		}
+		})
 		answer = howManyFunction(answer);
 		$("#answer").text(answer);
 		console.log(answer);
@@ -71,6 +79,17 @@ $(document).ready(function() {
 		}
 		else if (b === "anytime") {
 			return "anytime";
+		}
+	}
+
+	function wherePurchase() {
+		var f = $('input[name="purchase"]:checked').val();
+		console.log(f);
+		if (f === "station") {
+			return "advance_purchase";
+		}
+		else if (f === "train") {
+			return "onboard_purchase";
 		}
 	}
 
