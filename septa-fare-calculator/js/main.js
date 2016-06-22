@@ -30,21 +30,20 @@ $(document).ready(function() {
 		console.log(zone, time, where);
 		$.getJSON("fares.json", function(data){
 			zoneArray = data.zones;
-			console.log(zoneArray[0].zone)
-			for (var i=0;i<5;i++){
-				if (zoneArray[i].zone === zone){
-					here=zones[i];
-					for (var j=0;j<5;j++) {
-						if (here.fares[j].type === time && here.fares[j].purchase === where) {
-							answer = here.fares[j].price;
-						}
+			here=zones[zone-1];
+			console.log("now " + here.fares[1].price);
+			for (var j=0;j<5;j++) {
+				if (here.fares[j].type === time) {
+					if (here.fares[j].purchase === where) {
+						answer = here.fares[j].price;
+						console.log("answer is " + answer);
 					}
 				}
 			}
 		})
 		answer = howManyFunction(answer);
 		$("#answer").text(answer);
-		console.log(answer);
+		// console.log("answer is " + answer);
 	}
 
 //Get Value for ZONE
