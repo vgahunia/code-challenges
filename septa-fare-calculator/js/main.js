@@ -20,10 +20,9 @@ $(document).ready(function() {
     $("#info").html(anytime + "<br>" + weekday + "<br>" + evening + "<br>" + advance + "<br>" + onboard);
    })
 
-
+	var answer;
 	function value() {
 		var here;
-		var answer=1;
 		var zone = zoneFunction();
 		var time = dayFunction();
 		var where = wherePurchase();
@@ -37,12 +36,13 @@ $(document).ready(function() {
 					if (here.fares[j].purchase === where) {
 						answer = here.fares[j].price;
 						console.log("answer is " + answer);
+						answer = howManyFunction(answer);
+						$("#answer").text("$"+answer);
 					}
 				}
 			}
 		})
-		answer = howManyFunction(answer);
-		$("#answer").text(answer);
+		
 		// console.log("answer is " + answer);
 	}
 
