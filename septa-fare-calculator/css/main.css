@@ -1,11 +1,44 @@
 body{
 	background-color: rgb(230,250,220);
+	font-family: 'Montserrat', sans-serif;
 }
-
+h2{
+	padding: 0;
+	margin: 0;
+	margin-bottom:4px;
+	text-align: center;
+	font-size: 16pt;
+}
+#zoneMenu{
+	text-align: center;
+}
 .section{
-	border: 1px solid black;
+	border: 2px solid rgb(200,200,200);
 	width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 	background-color: white;
+}
+#info{
+	font-size: 8pt;
+	width:360px;
+	margin: 0 auto;
+	padding-top: 10px;
+	border-top: 1px dotted black;
+}
+#where{
+	text-align: center;
+}
+#howManyMenu{
+	text-align: center;
+}
+#d{
+	width: 80px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;
+}
+#answer{
+	text-align: center;
 }
